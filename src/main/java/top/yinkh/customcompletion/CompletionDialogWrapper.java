@@ -1,8 +1,5 @@
 package top.yinkh.customcompletion;
 
-import com.intellij.credentialStore.CredentialAttributes;
-import com.intellij.credentialStore.Credentials;
-import com.intellij.ide.passwordSafe.PasswordSafe;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.ui.DialogWrapper;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +27,9 @@ public class CompletionDialogWrapper extends DialogWrapper {
     @Override
     protected JComponent createCenterPanel() {
         JPanel dialogPanel = new JPanel(new BorderLayout());
+        JLabel label  = new JLabel();
+        label.setText("split by ';' eg: apple;orange");
+        dialogPanel.add(label, BorderLayout.NORTH);
 
         String customCompletion = PropertiesComponent.getInstance().getValue("custom_completion");
         text = new JTextField();
