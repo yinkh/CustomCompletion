@@ -2,11 +2,17 @@ package top.yinkh.customcompletion;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.ui.DialogWrapper;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
-import java.awt.*;
-
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author yinkanghong
@@ -27,7 +33,7 @@ public class CompletionDialogWrapper extends DialogWrapper {
     @Override
     protected JComponent createCenterPanel() {
         JPanel dialogPanel = new JPanel(new BorderLayout());
-        JLabel label  = new JLabel();
+        JLabel label = new JLabel();
         label.setText("split by ';' eg: apple;orange");
         dialogPanel.add(label, BorderLayout.NORTH);
 
@@ -43,7 +49,10 @@ public class CompletionDialogWrapper extends DialogWrapper {
     @Override
     protected void doOKAction() {
         if (getOKAction().isEnabled()) {
-            PropertiesComponent.getInstance().setValue("custom_completion", text.getText());
+            if (StringUtils.isNotEmpty(text.getText())) {
+                List<String> completionList = Arrays.stream(text.getText().split(";")).toList();
+                PropertiesComponent.getInstance().setList("custom_completion", completionList);
+            }
             close(OK_EXIT_CODE);
         }
     }

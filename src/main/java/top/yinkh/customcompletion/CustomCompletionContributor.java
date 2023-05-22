@@ -1,15 +1,18 @@
 package top.yinkh.customcompletion;
 
 
-import com.intellij.codeInsight.completion.*;
+import com.intellij.codeInsight.completion.CompletionContributor;
+import com.intellij.codeInsight.completion.CompletionParameters;
+import com.intellij.codeInsight.completion.CompletionProvider;
+import com.intellij.codeInsight.completion.CompletionResultSet;
+import com.intellij.codeInsight.completion.CompletionType;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.util.ProcessingContext;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,9 +28,8 @@ public class CustomCompletionContributor extends CompletionContributor {
                     public void addCompletions(@NotNull CompletionParameters parameters,
                                                @NotNull ProcessingContext context,
                                                @NotNull CompletionResultSet resultSet) {
-                        String customCompletion = PropertiesComponent.getInstance().getValue("custom_completion");
-                        if (StringUtils.isNotEmpty(customCompletion)) {
-                            List<String> completionList = Arrays.stream(customCompletion.split(";")).toList();
+                        List<String> completionList = PropertiesComponent.getInstance().getList("custom_completion");
+                        if (CollectionUtils.isNotEmpty(completionList)) {
                             for (String completion : completionList) {
                                 resultSet.addElement(LookupElementBuilder.create(completion).withTypeText("custom"));
                             }
