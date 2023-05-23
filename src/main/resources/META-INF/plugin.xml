@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>CustomCompletion</name>
+    <name>Custom Completion</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="yin-kh@qq.com" url="https://www.yinkh.top/">Yinkh</vendor>
@@ -15,7 +15,8 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
     Custom keywords for code completion.<br>
-    Config in Tools->Custom Completion.
+    Config keywords in Tools->Custom Completion menu.<br>
+    Keywords split by ";" eg: apple;orange
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
