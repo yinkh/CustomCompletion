@@ -2,6 +2,7 @@ package top.yinkh.customcompletion;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.ui.DialogWrapper;
+import com.intellij.openapi.util.SystemInfoRt;
 import com.intellij.ui.components.JBScrollPane;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -56,6 +57,14 @@ public class CompletionDialogWrapper extends DialogWrapper {
         dialogPanel.add(areaScrollPane, BorderLayout.CENTER);
 
         return dialogPanel;
+    }
+
+    @Override
+    public @Nullable JComponent getPreferredFocusedComponent() {
+        if (text != null) {
+            return text;
+        }
+        return null;
     }
 
     @Override
