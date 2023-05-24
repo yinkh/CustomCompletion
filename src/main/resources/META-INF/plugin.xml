@@ -30,7 +30,7 @@
     </extensions>
     <actions>
         <action id="CustomCompletion" class="top.yinkh.customcompletion.CustomCompletionAction" text="Custom Completion"
-                description="Custom completion">
+                description="Custom completion" icon="top.yinkh.customcompletion.MyIcons.Action">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
