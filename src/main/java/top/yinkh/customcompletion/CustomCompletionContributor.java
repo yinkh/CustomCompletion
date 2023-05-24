@@ -31,7 +31,9 @@ public class CustomCompletionContributor extends CompletionContributor {
                         List<String> completionList = PropertiesComponent.getInstance().getList("custom_completion");
                         if (CollectionUtils.isNotEmpty(completionList)) {
                             for (String completion : completionList) {
-                                resultSet.addElement(LookupElementBuilder.create(completion).withTypeText("custom"));
+                                resultSet.addElement(LookupElementBuilder.create(completion)
+                                        .withIcon(MyIcons.Action)
+                                        .withTypeText("custom"));
                             }
                         }
                     }
